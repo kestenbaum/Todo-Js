@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    background: url("../img/cool-background (1).png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    min-height: 100vh;
+}
+.tittle{
+    font-size: 36px;
+    color: cadetblue;
+    padding-top: 25px;
+}
+.form-todo{
+    display: flex;
+    padding: 25px;
+    border: 2px solid cadetblue;
+    border-radius: 15px;
+    min-width: 450px;
+}
+.form-todo__input{
+    background: cadetblue;
+    border: 2px solid cadetblue;
+    padding: 5px 15px;
+    width: 100%;
+}
+.form-todo__input:focus{
+    outline: none;
+}
+.form-todo__btn, .delete-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: cadetblue;
+    border: 2px solid cadetblue;
+    padding: 5px 15px;
+    border-left: 2px solid black;
+    cursor: pointer;
+}
+.todo-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.todo-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: cadetblue;
+    border: 2px solid cadetblue;
+    padding: 5px 15px;
+    min-width: 450px;
+    border-radius:   15px;
+}
+.todo-option{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.todo-checked{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: cadetblue;
+    cursor: pointer;
+}
+.checked{
+    opacity: 0.5;
+}
