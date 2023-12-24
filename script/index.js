@@ -1,16 +1,15 @@
-//Selectors
-const todoInput = document.querySelector('.form-todo__input'),
-      todoButton = document.querySelector('.form-todo__btn'),
-      todoList = document.querySelector('.todo-list')
+//const
+const getSelectorTodoInput = document.querySelector('.form-todo__input')
+const getSelectorTodoButton = document.querySelector('.form-todo__btn')
+const getSelectorTodoList = document.querySelector('.todo-list')
 
 //Data
 let data = []
 
 //Event Listener
-todoButton.addEventListener('click', addNewTodo)
-todoList.addEventListener('click', deleteBtn)
-todoList.addEventListener('change', checkboxChange)
-
+getSelectorTodoButton.addEventListener('click', addNewTodo)
+getSelectorTodoList.addEventListener('click', deleteBtn)
+getSelectorTodoList.addEventListener('change', checkboxChange)
 
 //Functions
 function setLocalStorage (massive) {
@@ -26,20 +25,17 @@ function getId (element) {
 }
 
 function todoNull () {
-    todoList.innerHTML = `<div class='tittle'>Todo-List Отсутсвует</div>`
+    getSelectorTodoList.innerHTML = `<div class='tittle'>Todo-List Отсутсвует</div>`
 }
 
-
 //Create new item
-function createNewTodo (massive) {
+function createNewTodo (array) {
     let newTodo = {
         id: Date.now(),
-        body: todoInput.value,
+        body: getSelectorTodoInput.value,
         checked: false
     }
-    todoInput.value.length > 0
-        ? massive.push(newTodo)
-        : null
+    getSelectorTodoInput.value.length > 0 && array.push(newTodo)
 }
 
 
@@ -49,7 +45,7 @@ function addNewTodo (event) {
     createNewTodo(data)
     setLocalStorage(data)
     checkLocalStorage(getLocalStorage())
-    todoInput.value = ''
+    getSelectorTodoInput.value = ''
 }
 
 //delete item
@@ -60,11 +56,8 @@ function deleteBtn (event) {
         setLocalStorage(result)
         todoUpdate(result)
         data = getLocalStorage()
-        getLocalStorage().length === 0
-            ? todoNull()
-            : null
+        getLocalStorage().length === 0 && todoNull()
     }
-    console.log(data)
 }
 //change checkbox
 function checkboxChange (event) {
@@ -79,10 +72,10 @@ function checkboxChange (event) {
 }
 
 //update display
-function todoUpdate (massive) {
-    todoStr = ''
-    massive.map(item =>
-      todoStr += `
+function todoUpdate (array) {
+    let todoElement = ''
+    array.map(item =>
+        todoElement += `
         <div class='todo-item' id='${item.id}'>
             <div class='todo-description'>${item.body}</div>
             <div class='todo-option'>
@@ -91,18 +84,17 @@ function todoUpdate (massive) {
             </div>
         </div>  
       `)
-
-    todoList.innerHTML = todoStr
+    getSelectorTodoList.innerHTML = todoElement
 }
 
 function createLocalStorage () {
-    localStorage.length === 0 ? setLocalStorage(data) : null
+    localStorage.length === 0 && setLocalStorage(data)
 }
 
-function checkLocalStorage (massive) {
-   if ( massive.length >= 1){
+function checkLocalStorage (array) {
+   if ( array.length >= 1){
        data = getLocalStorage()
-       todoUpdate(massive)
+       todoUpdate(array)
    } else {
        todoNull()
    }
